@@ -1,12 +1,11 @@
 from nltk.probability import FreqDist
 from nltk.corpus import stopwords
-import re
 import nltk
 from nltk.corpus import webtext
 from nltk.tokenize import sent_tokenize,word_tokenize
 
 nltk.download('punkt')
-with open('/Users/hunteraek/Desktop/NLP/WillSmith.txt','r') as file:
+with open('/Users/hunteraek/Desktop/NLP/WillSmith.txt','r') as file: # reference article https://www.bbc.com/news/entertainment-arts-60939316
     data = file.read()
 print(data)
 
@@ -24,8 +23,8 @@ sw = nltk.corpus.stopwords.words('english')
 words_clear = [word for word in words if word not in sw ]
 words_clear = [word for word in words_clear if len(word) > 2]
 
-word_freq = FreqDist(words_clear)
-words_list_to_be_dict = dict([(m, n) for m, n in word_freq.items()])
+word_freq = FreqDist(words_clear) # Count freq of word
+words_list_to_be_dict = dict([(m, n) for m, n in word_freq.items()]) # chage type of data from List to be Dict
 # sorted by value(freq from max to min used)
 sorted_word = sorted(words_list_to_be_dict.items(), key=lambda x:x[1], reverse=True)
 print("number of sentences : ", len(words_clear))
